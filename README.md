@@ -21,7 +21,7 @@ Hugging Face's Trainer API is used for efficient training and evaluation.
 The trained model is evaluated on a test dataset.
 A prediction function allows users to input custom reviews and get sentiment predictions.
 
-### Technologies Used:
+### Skills Used:
 
 - Python
 - Hugging Face Transformers Library
