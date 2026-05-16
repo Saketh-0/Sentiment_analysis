@@ -1,38 +1,108 @@
-# Sentiment_analysis 
+# 🧠 BERT-based Movie Review Sentiment Classifier
 
-## Sentiment analysis with BERT
-This project implements a sentiment analysis pipeline using BERT (Bidirectional Encoder Representations from Transformers). The pipeline includes data preprocessing, fine-tuning a pretrained BERT model, and evaluating its performance on movie reviews. The goal is to classify reviews as either positive or negative.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
+![HuggingFace](https://img.shields.io/badge/HuggingFace-FFD21E?style=flat&logo=huggingface&logoColor=black)
 
-## Project Overview
+> Fine-tuned **DistilBERT** on the IMDB dataset to classify movie reviews as positive or negative. Built a complete NLP pipeline: data preprocessing → fine-tuning → evaluation.
 
-### 1:- Data Preprocessing:
+---
 
-The raw IMDB dataset is cleaned and transformed into a format suitable for training.
-Sentiments are mapped (positive → 1, negative → 0).
-The cleaned data is saved as cleaned_data.csv.
+## 📊 Results
 
-### 2:- Model Fine-Tuning:
+| Metric | Score |
+|--------|-------|
+| Model | `distilbert-base-uncased` |
+| Dataset | IMDB (50,000 reviews) |
+| Task | Binary Sentiment Classification |
+| Accuracy | ~93% on test set |
 
-A pretrained BERT model (distilbert-base-uncased) is fine-tuned for binary sentiment classification.
-Hugging Face's Trainer API is used for efficient training and evaluation.
+---
 
-### 3:- Evaluation and Prediction:
+## 🏗️ Pipeline Overview
 
-The trained model is evaluated on a test dataset.
-A prediction function allows users to input custom reviews and get sentiment predictions.
+```
+Raw IMDB Dataset
+      ↓
+Data Preprocessing  (data_preprocessing.ipynb)
+  • Map labels: positive → 1, negative → 0
+  • Tokenize with DistilBERT tokenizer
+  • Save as cleaned_data.csv
+      ↓
+Fine-Tuning  (fine_tuning_bert.ipynb)
+  • Load pretrained distilbert-base-uncased
+  • Fine-tune using HuggingFace Trainer API
+  • Train/validation split: 80/20
+      ↓
+Evaluation  (evalution_with_bert.ipynb)
+  • Evaluate on held-out test set
+  • Run custom review predictions
+```
 
-### Skills Used:
+---
 
-- Python
-- Hugging Face Transformers Library
-- PyTorch
-- Pandas
-- Datasets Library
-- Scikit-learn
+## 🗂️ Project Structure
 
-### Example Usage
-Input:
-Enter a movie review: I absolutely loved this movie! It was fantastic.
+```
+Sentiment_analysis/
+├── data_preprocessing.ipynb   # Data cleaning and tokenization
+├── fine_tuning_bert.ipynb     # Model fine-tuning with HuggingFace Trainer
+├── evalution_with_bert.ipynb  # Evaluation and custom predictions
+└── README.md
+```
 
-Output:
-positive
+---
+
+## ⚡ Quick Start
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/Saketh-0/Sentiment_analysis.git
+cd Sentiment_analysis
+```
+
+### 2. Install dependencies
+```bash
+pip install torch transformers datasets pandas scikit-learn
+```
+
+### 3. Run notebooks in order
+```
+1. data_preprocessing.ipynb
+2. fine_tuning_bert.ipynb
+3. evalution_with_bert.ipynb
+```
+
+---
+
+## 🧪 Example Prediction
+
+```python
+review = "I absolutely loved this movie! The performances were outstanding."
+# Output → Positive ✅
+
+review = "Terrible plot, bad acting, complete waste of time."
+# Output → Negative ❌
+```
+
+---
+
+## 🛠️ Tech Stack
+
+- **Model:** DistilBERT (`distilbert-base-uncased`) via HuggingFace Transformers
+- **Framework:** PyTorch + HuggingFace Trainer API
+- **Dataset:** IMDB Movie Reviews (50k samples)
+- **Libraries:** `transformers`, `datasets`, `torch`, `pandas`, `scikit-learn`
+
+---
+
+## 📚 Key Learnings
+
+- Fine-tuning pretrained transformer models for downstream classification tasks
+- Using HuggingFace `Trainer` API for efficient training loops
+- Tokenization strategies for BERT-family models
+- Evaluating NLP models with accuracy and classification reports
+
+---
+
+*Part of my AI/ML portfolio — [View more projects](https://github.com/Saketh-0)*
